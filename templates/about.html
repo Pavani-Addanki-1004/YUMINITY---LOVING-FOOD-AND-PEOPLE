@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Yuminity</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .about {
+      padding: 60px 20px;
+      background-color: #2e7d32; /* green background */
+      flex: 1;
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-image {
+      flex: 1 1 400px;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+      color: #fff;
+    }
+
+    .about-text h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .about-stats .stat {
+      flex: 1 1 120px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .about-stats .stat h3 {
+      font-size: 24px;
+      color: #ffeb3b; /* yellow for highlight */
+      margin-bottom: 5px;
+    }
+
+    .about-stats .stat p {
+      font-size: 14px;
+      color: #eee;
+    }
+
+    /* Back button */
+    .back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: #ffeb3b;
+      color: #2e7d32;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #fdd835;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+    }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-stats {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="about" class="about">
+    <div class="about-container">
+
+      <!-- Image Section -->
+      <div class="about-image">
+<img src="../design/images/FoodLoversLogo.png" alt="Yuminity Logo">
+      </div>
+
+      <!-- Text Content -->
+      <div class="about-text">
+        <h2>Serving Delicious Food with Passion Since 2010</h2>
+        <p>
+          At <strong>Yuminity</strong>, we believe every meal should be a celebration of flavor and freshness.
+          Our passion for food is reflected in every dish we serve. Whether it's dine-in, takeaway, or delivery,
+          Yuminity brings the taste of happiness right to your plate.
+        </p>
+
+        <!-- Stats -->
+        <div class="about-stats">
+          <div class="stat">
+            <h3>500+</h3>
+            <p>Happy Customers</p>
+          </div>
+          <div class="stat">
+            <h3>100+</h3>
+            <p>Unique Dishes</p>
+          </div>
+          <div class="stat">
+            <h3>14+</h3>
+            <p>Years of Service</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div style="text-align:center;">
+      <a href="home.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Yuminity. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+@import url('./fonts.css');
+
+html {
+    scroll-behavior: smooth;
+}
+
+.primary-color {
+    color: #2563EB;
+}
+
+.primary-color:hover {
+    color: #1D4ED8;
+}
+
+.profile {
+    width: 45px;
+    height: auto;
+}
+
+
+.font-black {
+    font-family: 'Product Sans';
+    font-weight: 900;
+    font-style: normal;
+}
+
+.font-bold {
+    font-family: 'Product Sans';
+    font-weight: bold;
+    font-style: normal;
+}
+
+.font-regular {
+    font-family: 'Product Sans';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-medium {
+    font-family: 'Product Sans';
+    font-weight: 500;
+    font-style: normal;
+}
+
+.font-thin {
+    font-family: 'Product Sans';
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-light {
+    font-family: 'Product Sans';
+    font-weight: 300;
+    font-style: normal;
+}
+
+.modal {
+    transition: opacity 0.25s ease;
+  }
+
+body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+}
+
+@keyframes fadeInTop {
+	from {
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes fadeInRight {
+	from {
+		transform: translate3d(-20%, 0, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+.fadeInRight {
+    -webkit-animation: fadeInRight 2s ease;
+    animation: fadeInRight 2s ease;
+}
+
+@keyframes fadeInRotate {
+	from {
+		transform: rotate(-0.5turn);
+	}
+	to {
+		transform: rotate(0turn);
+	}
+}
+
+.fadeInRotate {
+    -webkit-animation: fadeInRotate 2s ease;
+    animation: fadeInRotate 2s ease;
+}
+
+
+
+@keyframes slideInBottom {
+	0% {
+		transform: translateY(100px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+ .fadeInTop {
+    -webkit-animation: fadeInTop 2s ease;
+    animation: fadeInTop 2s ease;
+ }
+
+ .slideInBottom {
+     -webkit-animation: slideInBottom 2s ease;
+     animation: slideInBottom 2s ease;
+ }
+
+ @keyframes slideUp {
+     0%{
+        transform: translateY(100px);
+     }
+     100%{
+        transform: translateY(0);
+     }
+ }
+
+ .slideUp {
+    -webkit-animation: slideUp 2s ease;
+    animation: slideUp 2s ease;
+ }
+
+/* Horizontal carousel rows */
+.scroll-row {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-row > * {
+    scroll-snap-align: start;
+}
+
+/* Subtle horizontal scrollbar styling */
+.scroll-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-row::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.04);
+    border-radius: 9999px;
+}
+
+.scroll-row::-webkit-scrollbar-thumb {
+    background: rgba(16,185,129,0.5); /* tailwind green-500, semi */
+    border-radius: 9999px;
+}
+
+.scroll-row::-webkit-scrollbar-thumb:hover {
+    background: rgba(16,185,129,0.7);
+}
+
+/* Home feed cards */
+.dish-card {
+    /* Prevent flexbox from shrinking cards in horizontal scrollers */
+    flex: 0 0 18rem; /* 288px ~ Tailwind w-72 */
+    width: 18rem;
+    border-radius: 0.5rem; /* rounded-lg */
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    cursor: pointer;
+}
+
+.dish-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.dish-card .dish-image {
+    width: 100%;
+    height: 11rem; /* ~ h-44 */
+    object-fit: cover;
+    display: block;
+}
+
+.dish-card .dish-body {
+    padding: 0.75rem 1rem; /* px-4 py-3 */
+}
+
+.dish-card .dish-title {
+    font-family: 'Product Sans';
+    font-weight: 600;
+    font-size: 1.125rem; /* text-lg */
+    margin-bottom: 0.25rem; /* mb-1 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dish-card .dish-desc {
+    color: #4B5563; /* gray-600 */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* leading-snug */
+    height: 3rem; /* clamp to two lines visually */
+    overflow: hidden;
+}
+
+.dish-card .cuisine-badge {
+    position: absolute;
+    top: 0.5rem; /* top-2 */
+    left: 0.5rem; /* left-2 */
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.75rem; /* text-xs */
+    padding: 0.25rem 0.5rem; /* px-2 py-1 */
+    border-radius: 9999px;
+}
+

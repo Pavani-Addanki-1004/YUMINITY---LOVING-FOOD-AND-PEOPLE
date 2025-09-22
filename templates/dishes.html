@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Dishes - YUMUNITY</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body class="bg-green-50 overflow-x-hidden">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md py-4">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <a href="home.html" class="flex items-center">
+        <img src="../assets/images/logo-display.svg" alt="Logo" class="h-10">
+      </a>
+      <nav class="hidden md:flex space-x-4">
+        <a href="home.html" class="text-green-700 hover:text-green-900">Home</a>
+        <a href="about.html" class="text-green-700 hover:text-green-900">About</a>
+        <a href="contact.html" class="text-green-700 hover:text-green-900">Contact</a>
+        <a href="discussions.html" class="text-green-700 hover:text-green-900">Discussions</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dish Search Section -->
+  <section id="search-dish-call" class="max-w-4xl mx-auto mt-12 px-4">
+    <h2 class="text-3xl font-bold text-green-700 mb-6 text-center">Browse Your Favorite Dishes</h2>
+    
+    <!-- Search Bar -->
+    <div class="flex gap-2">
+      <input id="dish-search" type="text" placeholder="Search for a dish..." 
+        class="flex-1 border rounded px-4 py-2 focus:ring focus:ring-green-300">
+      <button id="search-btn" 
+        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+        Search
+      </button>
+    </div>
+    
+    <!-- No Results Message -->
+    <p id="no-results" class="hidden mt-6 text-center text-gray-500">No matching dishes found.</p>
+    
+    <!-- Dish Results -->
+    <div id="dish-results" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <!-- JS will populate this -->
+    </div>
+  </section>
+
+  <!-- Surprise Me Button -->
+  <div class="flex justify-center mt-8">
+    <button id="random-dish-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded shadow-md transition duration-300 transform hover:scale-105">
+      🎲 Surprise Me!
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-green-600 text-white py-6 mt-16">
+    <p class="text-center">&copy; 2025 YUMUNITY, Inc. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const resultsContainer = document.getElementById('dish-results');
+    const noResults = document.getElementById('no-results');
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('dish-search');
+
+    function clearAndHideEmpty() {
+      resultsContainer.innerHTML = '';
+      noResults.classList.add('hidden');
+    }
+
+    function buildDishCard(dish) {
+      const a = document.createElement('a');
+      a.href = 'javascript:void(0)';
+      a.className = 'p-4 bg-white rounded shadow hover:shadow-lg transition cursor-pointer';
+      a.onclick = function(){
+        try { window.localStorage.setItem('WATCH_DISH_ID', String(dish['DISH_ID'])); } catch(e) {}
+        window.location.href = 'dish.html';
+      };
+      const h3 = document.createElement('h3');
+      h3.className = 'text-lg font-semibold text-green-700 truncate';
+      h3.textContent = dish['DISH_NAME'] || 'Dish';
+      a.appendChild(h3);
+      return a;
+    }
+
+    function renderDishList(arr){
+      clearAndHideEmpty();
+      if(!arr || arr.length === 0){
+        noResults.classList.remove('hidden');
+        return;
+      }
+      arr.forEach(d => resultsContainer.appendChild(buildDishCard(d)));
+    }
+
+    function fetchRecent(){
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8000/getRecentPostedDishes',
+        success: function(res){
+          const data = (typeof res === 'string') ? JSON.parse(res) : res;
+          renderDishList(data && data.data ? data.data : []);
+        },
+        error: function(err){
+          console.error('Failed to load dishes', err);
+          noResults.classList.remove('hidden');
+        }
+      });
+    }
+
+    function doSearch(){
+      const q = searchInput.value.trim();
+      if(q === ''){ fetchRecent(); return; }
+      const pattern = '%' + q + '%';
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8000/searchDishes',
+        data: JSON.stringify({ pattern }),
+        success: function(res){
+          const data = (typeof res === 'string') ? JSON.parse(res) : res;
+          renderDishList(data && data.data ? data.data : []);
+        },
+        error: function(err){
+          console.error('Search failed', err);
+          renderDishList([]);
+        }
+      });
+    }
+
+    // Search handlers
+    searchBtn.addEventListener('click', doSearch);
+    searchInput.addEventListener('keyup', function(e){ if(e.key === 'Enter'){ doSearch(); }});
+
+    // Surprise Me -> random dish
+    document.getElementById('random-dish-btn').addEventListener('click', function(){
+      fetch('http://localhost:8000/getRandomDish')
+        .then(async (r) => {
+          if(!r.ok){ throw new Error('No dishes found'); }
+          const dish = await r.json();
+          window.localStorage.setItem('WATCH_DISH_ID', String(dish.DISH_ID));
+          window.location.href = 'dish.html';
+        })
+        .catch(err => {
+          alert('Could not find a random dish right now. Please try again later.');
+          console.error(err);
+        });
+    });
+
+    // Initial load
+    fetchRecent();
+  </script>
+
+</body>
+</html>

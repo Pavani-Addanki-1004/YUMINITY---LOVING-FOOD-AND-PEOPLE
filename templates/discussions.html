@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discussion Forum</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 min-h-screen flex flex-col items-center py-10 px-4">
+
+  <h1 class="text-4xl font-bold text-green-700 mb-6">🍽️ Food Discussion Forum</h1>
+  <div class="w-full max-w-xl mb-4">
+    <a href="home.html" class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded shadow focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+      <span>←</span>
+      <span>Back to Home</span>
+    </a>
+  </div>
+
+  <!-- Post Form -->
+  <div class="w-full max-w-xl bg-white shadow-md rounded-lg p-6 mb-10">
+    <input type="text" id="name" placeholder="Your Name" class="w-full p-2 border rounded mb-2" />
+    <textarea id="message" rows="4" placeholder="Share your food thoughts..." class="w-full p-2 border rounded mb-2"></textarea>
+    <button onclick="addPost()" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded w-full">Post</button>
+  </div>
+
+  <!-- Posts -->
+  <div id="posts" class="w-full max-w-xl space-y-6"></div>
+
+  <script>
+    const postsContainer = document.getElementById("posts");
+
+    // Load posts from localStorage on load
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem("forumPosts")) || [];
+      saved.forEach(p => renderPost(p));
+    };
+
+    function addPost() {
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (!name || !message) return alert("Please enter name and message");
+
+      const post = {
+        id: Date.now(),
+        name,
+        message,
+        time: new Date().toLocaleString(),
+        likes: 0,
+        replies: []
+      };
+
+      savePost(post);
+      renderPost(post);
+      document.getElementById("name").value = "";
+      document.getElementById("message").value = "";
+    }
+
+    function savePost(post) {
+      const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+      posts.push(post);
+      localStorage.setItem("forumPosts", JSON.stringify(posts));
+    }
+
+    function renderPost(post) {
+      const postDiv = document.createElement("div");
+      postDiv.className = "bg-white p-4 rounded shadow";
+
+      postDiv.innerHTML = `
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-green-700">${post.name}</span>
+          <span class="text-sm text-gray-400">${post.time}</span>
+        </div>
+        <p class="mt-2 text-gray-800">${post.message}</p>
+        <div class="mt-4 flex gap-4 text-sm">
+          <button class="like-btn text-blue-600 hover:underline">👍 Like (<span>${post.likes}</span>)</button>
+          <button class="reply-btn text-green-600 hover:underline">💬 Reply</button>
+        </div>
+        <div class="replies mt-4 space-y-2 pl-4 border-l-2 border-green-200"></div>
+      `;
+
+      // Like handler
+      postDiv.querySelector(".like-btn").addEventListener("click", () => {
+        post.likes++;
+        postDiv.querySelector(".like-btn span").textContent = post.likes;
+        updatePost(post);
+      });
+
+      // Reply handler
+      postDiv.querySelector(".reply-btn").addEventListener("click", () => {
+        const reply = prompt("Your reply:");
+        if (reply) {
+          const replyObj = {
+            name: "Anonymous",
+            text: reply,
+            time: new Date().toLocaleString()
+          };
+          post.replies.push(replyObj);
+          updatePost(post);
+          renderReply(replyObj, postDiv.querySelector(".replies"));
+        }
+      });
+
+      // Load replies
+      post.replies.forEach(r => renderReply(r, postDiv.querySelector(".replies")));
+      postsContainer.prepend(postDiv);
+    }
+
+    function renderReply(reply, container) {
+      const replyDiv = document.createElement("div");
+      replyDiv.className = "bg-gray-100 p-2 rounded";
+      replyDiv.innerHTML = `
+        <div class="text-sm text-green-800 font-semibold">${reply.name} <span class="text-gray-400 text-xs">(${reply.time})</span></div>
+        <div class="text-sm text-gray-700 mt-1">${reply.text}</div>
+      `;
+      container.appendChild(replyDiv);
+    }
+
+    function updatePost(updatedPost) {
+      const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+      const idx = posts.findIndex(p => p.id === updatedPost.id);
+      if (idx !== -1) {
+        posts[idx] = updatedPost;
+        localStorage.setItem("forumPosts", JSON.stringify(posts));
+      }
+    }
+  </script>
+</body>
+</html>

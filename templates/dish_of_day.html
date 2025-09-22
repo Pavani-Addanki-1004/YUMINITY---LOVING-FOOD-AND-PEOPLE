@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YUMINTY - Weekly Recipes</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function showCategory(category) {
+      document.querySelectorAll('.recipe-category').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(category).classList.remove('hidden');
+
+      // highlight active button
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('bg-green-700'));
+      document.getElementById(category + "-btn").classList.add('bg-green-700');
+    }
+  </script>
+</head>
+<body class="bg-green-50 overflow-x-hidden">
+
+  <!-- Hero -->
+  <section class="py-12 bg-green-600 text-white text-center">
+    <h1 class="text-4xl font-bold mb-2">🌱 YUMINTY Weekly Recipes</h1>
+    <p class="text-lg">Plan your week with tasty Vegan, Vegetarian & Non-Vegetarian meals!</p>
+  </section>
+ <!-- Back Button -->
+<div style="text-align:left;">
+  <a href="home.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+<style>
+  .back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #17720aff; /* Blue background */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .back-btn:hover {
+    background-color: green; /* Darker blue on hover */
+  }
+</style>
+
+
+  <!-- Category Buttons -->
+  <section class="py-8 text-center">
+    <div class="space-x-4">
+      <button id="vegan-btn" onclick="showCategory('vegan')" class="cat-btn px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">🌱 Vegan</button>
+      <button id="vegetarian-btn" onclick="showCategory('vegetarian')" class="cat-btn px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">🥗 Vegetarian</button>
+      <button id="nonveg-btn" onclick="showCategory('nonveg')" class="cat-btn px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">🍗 Non-Vegetarian</button>
+    </div>
+  </section>
+
+  <!-- VEGAN Recipes -->
+  <section id="vegan" class="recipe-category py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/1130228942/photo/indian-dal-traditional-indian-soup-lentils-indian-dhal-spicy-curry-in-bowl-spices-herbs.jpg?s=612x612&w=0&k=20&c=ciPGZR4hkLeUL-nRxY4iAh539zYLgUkNz82GG_nJG5A=" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🌱 Lentil Mondays</h3>
+        <p class="text-sm text-gray-600">Hearty red lentil curry.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/190130-tofu-stir-fry-horizontal-150-1549302524.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥦 Tofu Tuesdays</h3>
+        <p class="text-sm text-gray-600">Stir-fried tofu & veggies.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://www.crowdedkitchen.com/wp-content/uploads/2021/10/Staub-Pumpkin-Soup-17.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍲 Soup Wednesdays</h3>
+        <p class="text-sm text-gray-600">Vegan pumpkin soup.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://i0.wp.com/justinesnacks.com/wp-content/uploads/2022/10/Baked-Kale-Salad-recipe.jpg?fit=1638%2C2048&ssl=1" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥗 Salad Thursdays</h3>
+        <p class="text-sm text-gray-600">Quinoa & kale salad.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT87XYsvNjJQQ2D-gLaTVJl5_Ywy6j2PGHUAw&s" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍛 Curry Fridays</h3>
+        <p class="text-sm text-gray-600">Chickpea coconut curry.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://familystylefood.com/wp-content/uploads/2023/10/Roasted-Vegetable-Pasta.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍝 Pasta Saturdays</h3>
+        <p class="text-sm text-gray-600">Pasta with roasted veggies.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://www.isabeleats.com/wp-content/uploads/2019/06/sweet-potato-black-bean-burger-small-14-500x375.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍔 Burger Sundays</h3>
+        <p class="text-sm text-gray-600">Black bean vegan burgers.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VEGETARIAN Recipes -->
+  <section id="vegetarian" class="recipe-category py-12 bg-white hidden">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://img.freepik.com/premium-photo/indian-healthy-cuisine-palak-paneer-served-with-tandoori-roti_55610-744.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🧀 Paneer Mondays</h3>
+        <p class="text-sm text-gray-600">Palak paneer with roti.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ydHitXGkUjEV0wNGrXDm2YVW5qe8nmVR4A&s" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍚 Biryani Tuesdays</h3>
+        <p class="text-sm text-gray-600">Vegetable biryani with raita.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://food.annapurnaderoyal.com/wp-content/uploads/2021/07/Mixed-Veg-Curry1.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥒 Curry Wednesdays</h3>
+        <p class="text-sm text-gray-600">Mixed veg curry.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/1280329631/photo/italian-pizza-margherita-with-tomatoes-and-mozzarella-cheese-on-wooden-cutting-board-close-up.jpg?s=612x612&w=0&k=20&c=CFDDjavIC5l8Zska16UZRZDXDwd47fwmRsUNzY0Ym6o=" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍕 Pizza Thursdays</h3>
+        <p class="text-sm text-gray-600">Margherita pizza.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://s2.dmcdn.net/v/Sbzp11WU3sDJy1aEg/x1080" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥘 Masala Fridays</h3>
+        <p class="text-sm text-gray-600">Paneer butter masala.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/1345888788/photo/caprese-salad.jpg?s=612x612&w=0&k=20&c=cvxuF6osxtSktuBP4tsHkb46547-HU9W-K8_rSq5UGY=" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥗 Salad Saturdays</h3>
+        <p class="text-sm text-gray-600">Caprese salad.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/1189079893/photo/aloo-paratha-with-lassi-indian-potato-stuffed-flatbread-with-butter-on-top-served-with-fresh.jpg?s=612x612&w=0&k=20&c=KS-HPML7jXEVCD4edsaaAj6uLVqZUI7sxdSf0CtQKsc=" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥔 Sunday Comfort</h3>
+        <p class="text-sm text-gray-600">Aloo paratha with yogurt.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NON-VEGETARIAN Recipes -->
+  <section id="nonveg" class="recipe-category py-12 bg-white hidden">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/579767430/photo/chicken-tikka-masala.jpg?s=612x612&w=0&k=20&c=EjeRH4r3w9qQ2WELp5qkqkUh1HbJJwRcFNNv1suOtvM=" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍗 Chicken Mondays</h3>
+        <p class="text-sm text-gray-600">Butter chicken curry.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://t3.ftcdn.net/jpg/01/14/51/60/360_F_114516029_Z2B6FO30AB6ZR3v9WHXjpXmJScaiLtzk.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍖 Biryani Tuesdays</h3>
+        <p class="text-sm text-gray-600">Chicken biryani.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJBqleiP35e7YcDP5nmmNOF_t_XCwBGenLaQ&s" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🐟 Fish Wednesdays</h3>
+        <p class="text-sm text-gray-600">Grilled salmon.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://www.shutterstock.com/image-photo/grilled-chicken-breast-fillet-steak-600nw-1955288725.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🥩 Steak Thursdays</h3>
+        <p class="text-sm text-gray-600">Grilled Chicken steak.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://media.istockphoto.com/id/186139921/photo/fried-organic-coconut-shrimp.jpg?s=612x612&w=0&k=20&c=3xWq4C2JK0FfY0nJtkCwfs_KQedEXM-ERDVnEP_wqzo="class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-lg text-green-700">🍤 Prawn Fridays</h3>
+        <p class="text-sm text-gray-600">Garlic butter prawns.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI1MybwDqKFnapvVjWaRASXYgcy38NLUSMA&s" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍔 Burger Saturdays</h3>
+        <p class="text-sm text-gray-600">Classic Chicken burger.</p>
+      </div>
+
+      <div class="bg-green-100 p-4 rounded-lg shadow">
+        <img src="https://www.marthastewart.com/thmb/rhrwBpVfcU5dsPp1BxuH71MKQ_Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MSL_340389_Roast-Chicken-with-Herbs_Beauty-e3504f5712e646c0ab53cd10df25d16a.jpg" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-bold text-lg text-green-700">🍖 Roast Sundays</h3>
+        <p class="text-sm text-gray-600">Roast chicken with herbs.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white py-10 mt-12">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-sm">© 2025 YUMINTY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Show vegan by default
+    showCategory('vegan');
+  </script>
+
+</body>
+</html>
